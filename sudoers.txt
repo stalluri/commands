@@ -1,0 +1,6 @@
+http://brent.hmdclinical.com/2011/03/adding-users-to-sudoers-file.html
+http://bighow.org/37600699-Editing_sudoers_programmatically.html
+http://serverfault.com/questions/26303/why-do-i-have-to-edit-etc-sudoers-with-visudo
+http://serverfault.com/questions/213347/why-can-the-root-user-edit-read-only-files-but-a-regular-user-with-sudo-access
+http://stackoverflow.com/questions/5347489/whats-the-easiest-way-or-method-to-automate-the-adding-of-a-user-to-a-fresh-sud 
+http://ubuntuforums.org/showthread.php?t=1352310 

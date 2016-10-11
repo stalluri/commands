@@ -1,0 +1,212 @@
+### Excel epoch conversion formula
+
+=(((ROUND(B2/1000,0))-28800)/86400)+24107
+
+# divide by 1000 to convert milliseconds in seconds
+# 28800 is to take off 8 hrs from GMT in seconds
+# divide by 86400 to convert into days
+# add 24017 to change reference to 1 jan 1970 which is what epoch time is based on while 1 jan 1904 is excel's reference date
+
+
+
+### Copying files from remote server ###
+## if you have SSH access already ###
+# use -r to copy a directory using scp
+scp -i dev-gamma-ncalifornia.pem ~/workspace/neptuneio/src/scripts/neptune-agent/nagent.py ec2-user@54.183.41.55:/home/ec2-user/
+
+
+scp sril@corn.stanford.edu:/afs/ir.stanford.edu/users/s/r/sril/Ruby/* ./
+
+## Alternatively use rsync ##
+
+rsync -chavzP --stats user@remote.host:/path/to/copy /path/to/local/storage
+
+
+### USB disk backup ###
+
+Usually it gets mounted at /Volumes/FreeAgent Drive in Read and write mode
+Open the /Volumes path in finder
+
+To enable write on NTFS drives do the following :
+sudo /etc/fstab
+UUID=E7E0E6D6-374B-4D94-9793-ADC68349EAC5 none ntfs rw,auto,nobrowse
+<E7....AC5> is the UUID of the external hard drive
+
+unmount :
+diskutil list
+diskutil unmount /dev/disk1s1
+or disktutil unmountDisk /dev/disk1
+
+Even though the disk is still listed in diskutil it will be inaccessbile in finder and at /Volumes
+#######
+
+
+#### Download a file using curl
+curl -O <file_link_name>
+
+#### Mongod gives errors with lock file ###
+mongod --repair
+
+#then do a mongod& again
+
+
+## Mac terminal CLI navigation ##
+Ctrl + L Clears the Screen, similar to the clear command
+Ctrl + U Clears the line before the cursor position. If you are at the end of the line, clears the entire line.
+Ctrl + H Same as backspace
+Ctrl + R Let’s you search through previously used commands
+Ctrl + C Kill whatever you are running
+Ctrl + D Exit the current shell
+Ctrl + Z Puts whatever you are running into a suspended background process. fg restores it.
+Ctrl + K Clear the line after the cursor
+Ctrl + T Swap the last two characters before the cursor
+Esc + T Swap the last two words before the cursor
+Alt + F Move cursor forward one word on the current line
+Alt + B Move cursor backward one word on the current line
+
+
+##Copying and pasting in mac terminal
+Select some text (and release the mouse button), and use the middle mouse button to paste.
+
+Alternatively, when using the trackpad or a two-button mouse: after selecting, click and drag the selection just a bit; you'll see the pointer change. Now, when you let go of the button, the selected text is pasted at your cursor. Hitting Esc while dragging cancels.
+
+or: paste using Shift-Command-V
+
+or: paste using the middle mouse button
+
+
+## Tar and zip a file or directory
+tar -zcvf /path/to/dir.tar.gz /path/to/dir
+
+## unzip
+tar -zxvf /path/to/dir.tar.gz
+
+## Check top running processes
+top -o cpu
+top -o mem
+
+## Detailed understanding of io on Mac
+# A row is printed for every I/O
+sudo iosnoop
+# To print start and end times of IO call including delta
+sudo iosnoop -stoD
+# To see the shortlived processes
+sudo execsnoop -v
+
+
+# To list all open ports on Mac
+lsof -i -P |grep -i "listen"
+
+# To find size of file or directory
+du -csh <filename or dir name>
+
+# To post a JSON using curl
+curl -H "Content-Type: application/json" -d {"key1":"value1", "key2":"value2"} http://localhost:8080/api/rule/template/addtemplate
+
+# Increase no of file descriptors on mac/linux
+g /etc/sysctl.conf
+# change setting of fs.file-max = 204708
+# To apply changes without reboot
+sysctl -p
+
+# Start a simple http server in a local directory quickly
+python -m SimpleHTTPServer 8888
+
+
+# Synthetic CPU utilization
+# dont run it a background process
+yes
+
+# Synthetic disk utilization
+#Make a 1gb file quickly
+mkfile 1g file.test
+#On linux
+fallocate -l 100M file.test
+#or use
+dd if=/dev/zero of=output.dat  bs=1024  count=80240
+
+# Synthetic memory utilization
+while true;
+do
+perl -np -e '$x="0123456789"x1000000' < /dev/zero
+done
+
+# Synthetic disk IO
+# Repeate creation of random file in a loop
+while true;
+do
+dd if=/dev/random of=/home/ec2-user/synthetic_disk_io bs=1024 count=80240
+done
+
+
+# Shutdown mac from commandline
+sudo Shutdown -h Now
+sudo Shutdown -r no
+
+# Ip address on mac
+ipconfig getifaddr en0
+#External address
+curl ipecho.net/plain ; echo
+
+# replacing a pattern in set of files on mac
+# To deal with 8bit ascii vs utf8 issue in sed on mac
+export LC_CTYPE=C
+export LANG=C
+find . -name "*.jsp" | xargs sed -i '' 's|/resources|d1uu8bdo942vbv.cloudfront.net/resources|g'
+
+# Recursive grep
+# -r for recurvsive , -i for case insensitive and -l for list of files only
+grep -ri -l "\&times;" .
+
+# To see all env variables in mac
+env
+# To unset some variables
+unset <var_name>
+
+
+# Running commands as a different users
+su -c "Your command right here" -s /bin/sh username
+
+#create a new user
+sudo useradd <user_name>
+
+# To create a workload
+#!/bin/bash
+
+while true
+do
+yes > /dev/null &
+sleep 70
+killall yes
+done
+
+# Running remote commands
+ssh -i key.pm user@hostname "command to run"
+# use -t to create a tty for session so that sudo runs  without any tty problems
+
+
+# Sed replacement commands
+find . -name "*.jsp" | xargs sed -i -e 's|\(/resources/js/.*\).min.js|\1\.js|g'
+
+# curl command to get from an url with cookie
+curl -G http://staging-df56cfcf.neptune.io/api/rule/describerulehistory -d limit=10 -d rulename=cloudwatch_alarm --cookie "JSESSIONID=9970rlsh1t05kr2qb2ofuwlxqlqx.9970"
+
+# Jquery scrape website for contacts
+jQuery.each($('.en_user_details'), function(index, item) { jqItem = $(item); console.log(jqItem.find("a").text()+"::"+jqItem.find('.en_user_position').text()+"::"+jqItem.find('.en_user_org').text()); })
+
+
+# Find process tree
+pstree <pid>
+
+# Find memory usage of a process
+# Search for process name using grep command in the second pipe command
+ps -eo size,pid,user,command --sort -size | grep nep |awk '{ hr=$1/1024 ; printf("%13.2f Mb ",hr) } { for ( x=4 ; x<=NF ; x++ ) { printf("%s ",$x) } print "" }'
+
+# Get list of git repo contributor emails
+git log --pretty=format:'%ae' | sort | uniq
+git log | grep Author | sort |uniq
+git shortlog -se
+
+# Get list of git repo contributors
+curl https://api.github.com/repos/zingchart/ZingChart/contributors
+curl https://api.github.com/users/tpowell

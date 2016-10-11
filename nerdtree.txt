@@ -1,0 +1,9 @@
+http://kennedysgarage.com/articles/nerdtree/
+
+## Find a file and open it
+:set path=/path/to/project/**
+:find filename.ext
+To open your search result in a new tab or split-screen, try :tabfind or :sfind instead
+
+# Index for CtrlP from a different directory
+:CtrlP /path/to/directory_name

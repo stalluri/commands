@@ -1,0 +1,55 @@
+### Create a new branch of work ###
+git checkout -b <new_branch_name>
+
+## Add remote repository for heroku staging 
+git remote add staging  git@heroku.com:neptune-staging-env.git
+
+## See current set of available branches ##
+git branch
+
+## Delete local branch
+git branch -D <branch_name>
+## Delte remote origin branch
+git push origin --delete <branch_name>
+
+## Commit files directly from working directory to history ##
+git commit -am "<message for commit>"
+
+## Go to back last history commit ##
+## Gets the last history commit into staging area only. Working directory changes not affected ##
+git reset HEAD 
+
+## Gets the last history commit into both staging and working areas ##
+git checkout 
+git checkout HEAD
+
+## Checkout files from one commit before ##
+git checkout HEAD~  
+
+##  Checkout files from two commits before ##
+git checkout HEAD~2
+
+#Pull files from remote origin master ##
+git pull origin master
+
+
+# Recommitting last commit by editing it
+# This works only if the changes are not pushed to remote origin
+git reset --soft HEAD~1
+<make edits>
+git add <file names which got edited>
+git commit -m <message name>
+# Then push to origin master
+git push origin master
+
+
+
+# Combine 3 or 4 local commits into one Commit
+git rebase -i
+
+# use pick or squash appropriately in the next screen
+# combine or edit the final commit message
+
+
+# Local gitignore without polluting the common gitignore 
+Specify local repository specific files to ignore in $GIT_DIR/info/exclude file

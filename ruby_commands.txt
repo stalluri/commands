@@ -1,0 +1,51 @@
+# Common ruby commands
+require "Nokogiri"
+require "open-uri"
+
+# Every vairable is an object and so can contain anything string, paragraphs, html or numbers or can be set of objects
+
+company_name ="samsung"
+
+url ="http://www.amazon.com/s/ref=nb_sb_noss_2/181-3203679-6993915?url=search-alias%3Daps&field-keywords="+company_name
+
+
+# Parsing using Nokogiri
+# -- Disabled temporarily
+#url_parsed = Nokogiri::HTML(open(url))
+
+# Opening the URL
+puts "Downloading from :"+url
+
+url_parsed =open(url)
+
+#puts url_parsed.read
+
+# Initializing a local file to write into
+
+# If the file already exists then it will be overwritten
+
+downloaded_url_file = open(company_name+".html", "w")
+
+# Writing in local file
+puts "Writing to local file: "+company_name+".html"
+
+downloaded_url_file.write(url_parsed.read)
+
+# Close the local file after writing
+downloaded_url_file.close
+
+
+# Opening the written file and displaying the contents
+
+temp_file_handler = open(downloaded_url_file,"r")
+puts temp_file_handler.read
+temp_file_handler.close
+
+# Ranges & loops
+
+(1..10).each do |num|
+puts url+num.to_s
+# GIving time between actions/web requests so as not to overload the servers
+sleep 0.3
+end
+
