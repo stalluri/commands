@@ -106,8 +106,11 @@ find /tmp -type f -name "*.txt" -exec rm -f {} \;
 #delete files larger than 100MB
 find /home/bob/dir -type f -name *.log -size +10M -exec rm -f {} \;
 
-
-
-
-
+#The xargs command takes white space characters (tabs, spaces, new lines) as delimiters. You can narrow it down only for the new line characters ('\n') with -d option like this
+ls *.mp3 | xargs -d '\n' mplayer
+ls *.mp3 | xargs -0 mplayer
+# Second option above is the best in conjucntion with find's -print 0
+#The xargs utility reads space, tab, newline and end-of-file delimited strings from the standard input and executes utility with the strings as arguments.
+#You want to avoid using space as a delimiter. This can be done by changing the delimiter for xargs
+find . -name "*.mp3" -print0 | xargs -0 mplayer
 
