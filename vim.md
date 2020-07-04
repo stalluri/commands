@@ -1,4 +1,4 @@
-# Navigation
+## Navigation
 
 ```
 <C-f> <C-b> : Page up or down
@@ -25,10 +25,11 @@
 <C-f> : Scroll half page down
 ```
 
-# Word replacement
+## Word replacement
 ```
             ciw : Replace a word under cursor
              cw : if cursor is at the beginnning of the line
+             V  : Select a line visually
    e <filename> : Open new files in same window
 tabe <filename> : in a new tab
   sp <filename> : split screen
@@ -42,20 +43,17 @@ tabe <filename> : in a new tab
            #"0p : means we are using the copied text in first register 0
 ```
 
-# Vim text objects great tutorial to take VIM editing to a whole new level
-http://blog.carbonfive.com/2011/10/17/vim-text-objects-the-definitive-guide/
-
 ## Indenting
-Use the > command. To indent 5 lines, 5>>. To mark a block of lines and indent it, Vjj> to indent 3 lines (vim only). To indent a curly-braces block, put your cursor on one of the curly braces and use >%.
+```
+   > : Indent current line
+  == : Indent current line
+  4> : Indent 4 lines
+  >% : Cursor on block paranthesis to indent entire block
+V5j> : Indent 5 lines in visual mode
+]p   : Carry indention of copied block
+```
 
-If you’re copying blocks of text around and need to align the indent of a block in its new location, use ]p instead of just p. This aligns the pasted block with the surrounding text.dent by 5 tabs
-5>>
-
-<shift>-v also works to select a line in Vim
-
-# Other tips
-http://tnerual.eriogerg.free.fr/vimqrc.html
-https://sites.google.com/site/chrelad/notes-1/vimtips
-https://gist.github.com/m3nd3s/3959966
-
-
+## Other miscellaneous vim tips and links
+[Vim Tips] (https://gist.github.com/m3nd3s/3959966)
+[Vim text objects] (http://blog.carbonfive.com/2011/10/17/vim-text-objects-the-definitive-guide/)
+[Vim QRC] (http://tnerual.eriogerg.free.fr/vimqrc.html)
