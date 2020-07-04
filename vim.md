@@ -1,16 +1,45 @@
 # Navigation
-<c-f> <c-b> for page up or down
-w, e to navigate by word to the beginnning or end of the word
+
+## Page up or down
+`<c-f> <c-b>`
+
+## To begining and end of word
+`w, e`
 b to navigate backward
-{  } to navigate by paragraphs
-(  ) to navigate by lines
 
-G goes to end of file
-gg goes to beginnning of file
-gg=G indents the entire file
-== indents the current line
+## Navigage by paragraph
+`{  }`
+`[  ]`
 
-# Vim text objects great tutorial to take VIM editin to a whole new level
+## Navigage by lines
+`(  )`
+
+## Top, middle and end of page view
+`H M L`
+
+## Shifting screen
+`zz`:    Current line to middle
+`zt`:    Current line to top
+`zb`:    Current line to bottom
+`<C-e>`: Scroll one line up
+`<C-y>`: Scroll one line down
+`<C-d>`: Scroll half page
+`<C-f>`: Scroll half page down
+
+## To start and end of file
+`gg G`
+
+## To a particular line number
+`:10`
+`10gg`
+
+## Indents entire file
+`gg=G`
+
+## Indent current line
+`==`
+
+# Vim text objects great tutorial to take VIM editing to a whole new level
 http://blog.carbonfive.com/2011/10/17/vim-text-objects-the-definitive-guide/
 
 ## Indenting
@@ -30,8 +59,6 @@ https://gist.github.com/m3nd3s/3959966
 ciw
 cw # if cursor is at the beginnning of the line
 
-
-
 #Open new files
 # in same window
 :e <filename>
@@ -46,7 +73,7 @@ cw # if cursor is at the beginnning of the line
 
 # copy a word with another word
 # at the first word
-yiw 
+yiw
 # at the second word
 viwp
 # at the third word
@@ -54,7 +81,7 @@ viw"0p
 
 #replace a line with another line
 #at the first line
-yy 
+yy
 #at the second line
 Vp
 #at the third line
