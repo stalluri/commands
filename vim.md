@@ -4,12 +4,9 @@
 <C-f> <C-b> : Page up or down
        w, e : To begining and end of word
           b : To navigate backward
-
        {  } : Navigage by paragraph
        [  ] : Navigage by paragraph
-
        (  ) : Navigage by lines
-
       H M L : Top, middle and end of page view
        gg G : To start and end of file
  10 or 10gg : To a particular line number
@@ -32,13 +29,10 @@
 ```
             ciw : Replace a word under cursor
              cw : if cursor is at the beginnning of the line
-
    e <filename> : Open new files in same window
 tabe <filename> : in a new tab
   sp <filename> : split screen
-
-                : g/^$/d : Delete all empty lines in a file
-
+         g/^$/d : Delete all empty lines in a file
             yiw : copy a word with another word at the first word
            viwp : at the second word
          viw"0p : at the third word
